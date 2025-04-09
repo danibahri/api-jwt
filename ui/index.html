@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API Mahasiswa dengan JWT</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        padding-top: 50px;
+        padding-bottom: 50px;
+      }
+      .hero {
+        background-color: #f8f9fa;
+        padding: 60px 0;
+        margin-bottom: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hero">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 offset-md-2 text-center">
+            <h1 class="display-4 mb-4">API Mahasiswa dengan JWT</h1>
+            <p class="lead">
+              Sistem REST API sederhana dengan proteksi JWT untuk mengelola data
+              mahasiswa.
+            </p>
+            <div class="mt-4">
+              <a href="login.html" class="btn btn-primary me-2">Login</a>
+              <a href="register.html" class="btn btn-outline-primary"
+                >Register</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row mb-5">
+        <div class="col-md-6 offset-md-3">
+          <div class="card">
+            <div class="card-header">
+              <h5>Akses Endpoint API</h5>
+            </div>
+            <div class="card-body">
+              <p>
+                Endpoint dasar:
+                <code>http://api-native.test/api/mahasiswa</code>
+              </p>
+              <p>Method yang didukung:</p>
+              <ul>
+                <li>
+                  <strong>GET</strong> - Ambil semua data atau berdasarkan ID
+                </li>
+                <li><strong>POST</strong> - Tambah data baru</li>
+                <li><strong>PUT</strong> - Update data</li>
+                <li><strong>DELETE</strong> - Hapus data</li>
+              </ul>
+              <div class="alert alert-warning">
+                <strong>Catatan:</strong> Semua endpoint memerlukan token JWT
+                valid dalam header Authorization.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <div class="card">
+            <div class="card-header">
+              <h5>Contoh Kode</h5>
+            </div>
+            <div class="card-body">
+              <pre><code>// Contoh request dengan Fetch API
+fetch('http://api-native.test/api/mahasiswa', {
+    headers: {
+        'Authorization': 'Bearer your_jwt_token'
+    }
+})
+.then(response => response.json())
+.then(data => console.log(data));</code></pre>
+              <p class="mt-3">
+                Login terlebih dahulu untuk mendapatkan token JWT valid.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Redirect ke dashboard jika sudah login
+      document.addEventListener("DOMContentLoaded", function () {
+        const token = localStorage.getItem("jwt_token");
+        if (token) {
+          window.location.href = "dashboard.html";
+        }
+      });
+    </script>
+  </body>
+</html>

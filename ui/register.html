@@ -4,71 +4,83 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Register</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <style>
-      body {
-        padding-top: 50px;
-      }
-      .form-container {
-        max-width: 400px;
-        margin: 0 auto;
-      }
-    </style>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body>
-    <div class="container">
-      <div class="form-container">
-        <h2 class="text-center mb-4">Register</h2>
-
+  <body class="bg-gray-100 pt-12">
+    <div class="container mx-auto px-4">
+      <div class="max-w-md mx-auto bg-white p-8 rounded-lg">
+        <h2 class="text-2xl font-bold text-center mb-6">Register</h2>
         <div
-          class="alert alert-success"
+          class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4 hidden"
           id="success-alert"
-          style="display: none"
+          role="alert"
         >
-          Registrasi berhasil! <a href="login.html">Login sekarang</a>
+          <span
+            >Registrasi berhasil!
+            <a href="login.html" class="text-green-700 font-bold underline"
+              >Login sekarang</a
+            ></span
+          >
         </div>
-
         <div
-          class="alert alert-danger"
+          class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4 hidden"
           id="error-alert"
-          style="display: none"
+          role="alert"
         ></div>
-
         <form id="registerForm">
-          <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" required />
+          <div class="mb-4">
+            <label
+              for="email"
+              class="block text-sm font-medium text-gray-700 mb-2"
+              >Email</label
+            >
+            <input
+              type="email"
+              class="w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg text-gray-700"
+              id="email"
+              required
+            />
           </div>
-          <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
+          <div class="mb-6">
+            <label
+              for="password"
+              class="block text-sm font-medium text-gray-700 mb-2"
+              >Password</label
+            >
             <input
               type="password"
-              class="form-control"
+              class="w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg text-gray-700"
               id="password"
               required
             />
           </div>
-          <button type="submit" class="btn btn-primary w-100">Register</button>
+          <button
+            type="submit"
+            class="w-full py-2 px-4 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          >
+            Register
+          </button>
         </form>
-
-        <div class="text-center mt-3">
-          <p>Sudah punya akun? <a href="login.html">Login</a></p>
+        <div class="text-center mt-6">
+          <p class="text-gray-600">
+            Sudah punya akun?
+            <a
+              href="login.html"
+              class="text-indigo-600 hover:text-indigo-800 font-medium"
+              >Login</a
+            >
+          </p>
         </div>
       </div>
     </div>
-
     <script>
       document
         .getElementById("registerForm")
         .addEventListener("submit", function (e) {
           e.preventDefault();
-
           const email = document.getElementById("email").value;
           const password = document.getElementById("password").value;
-
           fetch("http://api-jwt.test/register", {
             method: "POST",
             headers: {
@@ -82,22 +94,27 @@
             .then((response) => response.json())
             .then((data) => {
               if (data.status) {
-                document.getElementById("success-alert").style.display =
-                  "block";
-                document.getElementById("error-alert").style.display = "none";
+                document
+                  .getElementById("success-alert")
+                  .classList.remove("hidden");
+                document.getElementById("error-alert").classList.add("hidden");
                 document.getElementById("registerForm").reset();
               } else {
                 document.getElementById("error-alert").textContent =
                   data.message;
-                document.getElementById("error-alert").style.display = "block";
-                document.getElementById("success-alert").style.display = "none";
+                document
+                  .getElementById("error-alert")
+                  .classList.remove("hidden");
+                document
+                  .getElementById("success-alert")
+                  .classList.add("hidden");
               }
             })
             .catch((error) => {
               document.getElementById("error-alert").textContent =
                 "Terjadi kesalahan. Silakan coba lagi.";
-              document.getElementById("error-alert").style.display = "block";
-              document.getElementById("success-alert").style.display = "none";
+              document.getElementById("error-alert").classList.remove("hidden");
+              document.getElementById("success-alert").classList.add("hidden");
             });
         });
     </script>

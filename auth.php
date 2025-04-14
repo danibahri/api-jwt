@@ -5,7 +5,7 @@ use Firebase\JWT\Key;
 use Firebase\JWT\ExpiredException;
 
 class Auth {
-    private $secret_key = "your_secret_key_here"; // Ganti dengan kunci rahasia yang kuat
+    private $secret_key = "220411100089"; 
     private $db;
     private $table_name = "users";
 

@@ -1,5 +1,4 @@
 <?php
-// Ambil request URL
 $request_uri = $_SERVER['REQUEST_URI'];
 
 // Routing

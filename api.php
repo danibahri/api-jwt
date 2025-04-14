@@ -1,5 +1,4 @@
 <?php
-// Header untuk Cross-Origin Resource Sharing
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
@@ -45,22 +44,18 @@ if(preg_match('/\/api\/mahasiswa\/(\d+)/', $request_uri, $matches)) {
 switch($method) {
     case 'GET':
         if($id) {
-            // Get by ID
             getById($db, $id);
         } else {
-            // Get all
             getAll($db);
         }
         break;
     
     case 'POST':
-        // Create new
         create($db);
         break;
     
     case 'PUT':
         if($id) {
-            // Update
             update($db, $id);
         } else {
             http_response_code(400);
@@ -70,7 +65,6 @@ switch($method) {
     
     case 'DELETE':
         if($id) {
-            // Delete
             delete($db, $id);
         } else {
             http_response_code(400);
